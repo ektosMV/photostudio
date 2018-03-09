@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PhotoStudio.Models;
+using PhotoStudio.Modules;
 
 namespace PhotoStudio
 {
@@ -26,7 +27,6 @@ namespace PhotoStudio
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<BookingContext>(options => options.UseSqlServer(connection));
             services.AddMvc();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +43,7 @@ namespace PhotoStudio
             }
 
             app.UseStaticFiles();
-
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

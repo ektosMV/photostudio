@@ -7,14 +7,19 @@ using PhotoStudio.Models.Booking;
 
 namespace PhotoStudio.Models
 {
-    public class BookingContext : DbContext
+    public class BookingContext : DbContext, IBookingContext
     {
-        public DbSet<BookingModel> Bookings { get; set; }
-        public DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<BookingModel> Bookings { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
 
         public BookingContext(DbContextOptions<BookingContext> options) : base(options)
         {
             
+        }
+
+        public virtual IEnumerable<BookingModel> GetAllBookings()
+        {
+            return Bookings;
         }
     }
 }

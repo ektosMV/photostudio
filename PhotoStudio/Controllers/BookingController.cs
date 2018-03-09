@@ -21,7 +21,7 @@ namespace PhotoStudio.Controllers
 
         public IActionResult GetBookedData()
         {
-            return View();
+            return View(db.GetAllBookings());
         }
 
         public IActionResult GetBookingInfoForCustomers()

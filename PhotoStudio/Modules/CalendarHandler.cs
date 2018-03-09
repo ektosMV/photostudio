@@ -54,5 +54,7 @@ namespace PhotoStudio.Modules
             };
             service.Events.Insert(gevent, CalendarId).Execute();
         }
+
+
     }
 }
