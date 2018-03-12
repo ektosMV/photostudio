@@ -16,10 +16,27 @@ namespace PhotoStudio.Models.Booking
             _bookingContext = context;
         }
 
-        public List<BookingModel> GetAllBooks()
+        public List<BookingModel> GetAllBookings()
         {
             return (from book in _bookingContext.Bookings select book).ToList();
         }
+
+        public List<BookingModel> GetBookingsFromStartTime(DateTime startTime)
+        {
+            return (from book in _bookingContext.Bookings where book.TimeOfVisit >= startTime select book).ToList();
+        }
+
+        public List<BookingModel> GetBookingsBetweenTimes(DateTime startTime, DateTime endTimeOfVisitTime)
+        {
+            return (from book in _bookingContext.Bookings where book.TimeOfVisit >= startTime && book.TimeOfVisit <= endTimeOfVisitTime select book).ToList();
+        }
+
+        public List<BookingModel> GetBookingsByCustomerId(int id)
+        {
+            return _bookingContext.Bookings.Where(x => x.Customer.CustomerId == id).ToList();
+        }
+
+        
     }
 
 }
