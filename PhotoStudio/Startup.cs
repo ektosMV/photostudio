@@ -26,6 +26,7 @@ namespace PhotoStudio
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<BookingContext>(options => options.UseSqlServer(connection));
+            //services.AddTransient<Modules.CalendarHandler>());
             services.AddMvc();
         }
 

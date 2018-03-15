@@ -15,7 +15,7 @@ namespace PhotoStudio.Modules
             this.CalendarId = calendarId;
         }
 
-        public EventsResource.ListRequest GetEventRequest(DateTime timeMin, DateTime timeMax)
+        public List<Event> GetEventRequest(DateTime timeMin, DateTime timeMax)
         {
             var request = service.Events.List(CalendarId);
             request.TimeMin = timeMin;
@@ -23,17 +23,17 @@ namespace PhotoStudio.Modules
             request.SingleEvents = true;
             request.TimeMax = timeMax;
             request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
-            return request;
+            return request.Execute().Items.ToList();
         }
 
-        public EventsResource.ListRequest GetEventRequest(DateTime timeMin)
+        public List<Event> GetEventRequest(DateTime timeMin)
         {
             EventsResource.ListRequest request = service.Events.List(CalendarId);
             request.TimeMin = timeMin;
             request.ShowDeleted = false;
             request.SingleEvents = true;
             request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
-            return request;
+            return request.Execute().Items.ToList();
         }
 
         public void AddEventRequest(string summary, DateTime startDateTime, DateTime endDateTime, string timeZone)
@@ -53,8 +53,24 @@ namespace PhotoStudio.Modules
                 }
             };
             service.Events.Insert(gevent, CalendarId).Execute();
+            
         }
 
+        public void DeleteAllEvents()
+        {
+            var ids = service.Events.List(CalendarId).Execute().Items.Select(x => x.Id).ToList();
+            
+            var deleteRequestsr = new List<EventsResource.DeleteRequest>();
+            foreach (var id in ids)
+            {
+                deleteRequestsr.Add(new EventsResource.DeleteRequest(service, CalendarId, id));
+            }
+            foreach (var dr in deleteRequestsr)
+            {
+                dr.Execute();
+            }
+         }
 
+            
     }
 }

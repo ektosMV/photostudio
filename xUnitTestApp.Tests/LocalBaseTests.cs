@@ -12,7 +12,45 @@ namespace xUnitTestApp.Tests
 
     public class LocalBaseTests
     {
+        [Fact]
+        public void AddBookingTest()
+        {
+            var bookingdata = GenerateTestBookingData().AsQueryable();
+            var mockSet = GetMockset(bookingdata);
 
+            var contextOptions = new DbContextOptions<BookingContext>();
+            var mockContext = new Mock<BookingContext>(contextOptions);
+            mockContext.Setup(c => c.Bookings).Returns(mockSet.Object);
+
+            var service = new BookingService(mockContext.Object);
+            var custId = new List<int>();
+            foreach (var book in bookingdata)
+            {
+                if (!custId.Contains(book.Customer.CustomerId))
+                    custId.Add(book.Customer.CustomerId);
+            }
+            var id = custId[new Random().Next(custId.Count)];
+            var cust = new Customer()
+            {
+                CustomerId = 3,
+                CustomerEmail = "test4@t1.ru",
+                CustomerName = "TestAdd",
+                CustomerPhone = "04"
+            };
+            var addbooking = new BookingModel()
+            {
+                BookingId = 4,
+                Customer = cust,
+                TimeOfVisit = DateTime.Now.AddHours(1),
+                EndTime = DateTime.Now.AddHours(2)
+            };
+            
+            service.AddBooking(addbooking);
+            mockSet.Verify(m => m.Add(It.IsAny<BookingModel>()), Times.Once());
+            mockContext.Verify(m => m.SaveChanges(), Times.Once());
+            var res = service.GetAllBookings();
+            // Assert.Equal(res, addbooking);
+        }
 
 
         [Fact]
