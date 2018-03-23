@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PhotoStudio.Models;
+using PhotoStudio.Modules;
 
 namespace PhotoStudio.Controllers
 {

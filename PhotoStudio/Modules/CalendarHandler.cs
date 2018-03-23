@@ -4,17 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
+using Microsoft.Extensions.Configuration;
 
 namespace PhotoStudio.Modules
 {
     public class CalendarHandler : GoogleCalendarApi
     {
-        public string CalendarId { get; set; }
-        public CalendarHandler(string appName, string filePath, string calendarId) : base(appName, filePath)
-        {
-            this.CalendarId = calendarId;
-        }
-
         public List<Event> GetEventRequest(DateTime timeMin, DateTime timeMax)
         {
             var request = service.Events.List(CalendarId);

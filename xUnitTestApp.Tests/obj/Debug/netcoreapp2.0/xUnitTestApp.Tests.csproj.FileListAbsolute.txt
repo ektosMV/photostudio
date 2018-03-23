@@ -14,3 +14,5 @@ C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\obj\Debug\netcoreapp2
 C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\obj\Debug\netcoreapp2.0\xUnitTestApp.Tests.pdb
 C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2.0\PhotoStudio.dll
 C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2.0\PhotoStudio.pdb
+C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2.0\Modules\client_secret.json
+C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2.0\Modules\googlecalendarsettings.json

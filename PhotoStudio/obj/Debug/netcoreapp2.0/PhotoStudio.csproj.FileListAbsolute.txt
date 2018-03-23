@@ -9,3 +9,5 @@ C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\obj\Debug\netcoreapp2.0\Phot
 C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\obj\Debug\netcoreapp2.0\PhotoStudio.AssemblyInfo.cs
 C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\obj\Debug\netcoreapp2.0\PhotoStudio.dll
 C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\obj\Debug\netcoreapp2.0\PhotoStudio.pdb
+C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\bin\Debug\netcoreapp2.0\Modules\client_secret.json
+C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\bin\Debug\netcoreapp2.0\Modules\googlecalendarsettings.json

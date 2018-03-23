@@ -26,7 +26,11 @@ namespace PhotoStudio
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<BookingContext>(options => options.UseSqlServer(connection));
-            //services.AddTransient<Modules.CalendarHandler>());
+            services.AddTransient<CalendarSynchronise>();
+            // Add functionality to inject IOptions<T>
+            services.AddOptions();
+            // Add our Config object so it can be injected
+            services.Configure<GoogleConfiguration>(Configuration.GetSection("googlecalendarsettings"));
             services.AddMvc();
         }
 
