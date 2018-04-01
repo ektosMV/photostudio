@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PhotoStudio.Models.Booking
 {
-    public class BookingService
+    public class BookingService : IBookingService
     {
         private BookingContext _bookingContext;
 

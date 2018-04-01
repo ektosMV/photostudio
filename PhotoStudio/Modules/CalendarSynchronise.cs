@@ -10,7 +10,7 @@ using PhotoStudio.Models.Booking;
 
 namespace PhotoStudio.Modules
 {
-    public class CalendarSynchronise : CalendarHandler
+    public class CalendarSynchronise : CalendarHandler, ICalendarSynchronise
     {
         private BookingContext db;
         
@@ -23,7 +23,7 @@ namespace PhotoStudio.Modules
         {
             return db.Bookings.Where(x => x.TimeOfVisit > DateTime.Now);
         }
-
+        
         
         
         public void AddNewBookingsFromGoogleCaledar()

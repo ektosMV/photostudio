@@ -16,12 +16,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Modules\CalendarGenerator\CalendarGeneratorLocalisation.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="Modules\client_secret.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="Modules\googlecalendarsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Util\" />
   </ItemGroup>
 
 </Project>

@@ -16,3 +16,4 @@ C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2
 C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2.0\PhotoStudio.pdb
 C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2.0\Modules\client_secret.json
 C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2.0\Modules\googlecalendarsettings.json
+C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2.0\Modules\CalendarGenerator\CalendarGeneratorLocalisation.json
