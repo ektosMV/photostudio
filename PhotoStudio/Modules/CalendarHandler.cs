@@ -4,17 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
+using Google.Apis.Http;
+using Google.Apis.Util;
+using Microsoft.Extensions.Configuration;
+using PhotoStudio.Models.Booking;
 
 namespace PhotoStudio.Modules
 {
     public class CalendarHandler : GoogleCalendarApi
     {
-        public string CalendarId { get; set; }
-        public CalendarHandler(string appName, string filePath, string calendarId) : base(appName, filePath)
-        {
-            this.CalendarId = calendarId;
-        }
-
         public List<Event> GetEventRequest(DateTime timeMin, DateTime timeMax)
         {
             var request = service.Events.List(CalendarId);
@@ -36,6 +34,9 @@ namespace PhotoStudio.Modules
             return request.Execute().Items.ToList();
         }
 
+        
+
+
         public void AddEventRequest(string summary, DateTime startDateTime, DateTime endDateTime, string timeZone)
         {
             var gevent = new Event
@@ -52,8 +53,9 @@ namespace PhotoStudio.Modules
                     TimeZone = timeZone
                 }
             };
-            service.Events.Insert(gevent, CalendarId).Execute();
-            
+            var result = service.Events.Insert(gevent, CalendarId).Execute();
+            if (!result.Status.Equals("confirmed"))
+                throw new Exception($"Incorrect status, expected: confirmed, in fact {result.Status}");
         }
 
         public void DeleteAllEvents()
