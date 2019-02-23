@@ -33,3 +33,151 @@
         display: none;
     }
 }
+.calendar_block {
+    display: table;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    height: 100%;
+}
+
+.calendar {
+    display: table-cell;
+    position: relative;
+    vertical-align: top;
+    max-width: 750px;
+    border-collapse: collapse;
+}
+
+.buttons {
+    display: table-cell;
+    height: 100%;
+}
+
+.button {
+    position: relative;
+    height: 50%;
+}
+
+.button > button {
+        position: relative;
+        display: block;
+        display: table-row;
+        height: 100%;
+        width: 50px;
+        cursor: pointer;
+        border: none;
+        background-color: #CCC;
+}
+
+#upbutton {
+}
+
+#downbutton {
+}
+
+.button > button:hover {
+    opacity: 0.6;
+}
+
+#downimg {
+    position: absolute;
+    margin: 0 auto; /*
+	/*transform: scale(3,2);*/
+    /*vertical-align: bottom;*/
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#upimg {
+    position: absolute;
+    margin: 0 auto;
+    /*transform: scale(3,2);*/
+    top: 0px;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.calendar_header {
+    display: table-row;
+}
+
+.calendarrow {
+    display: table-row;
+}
+
+.daycell {
+    display: table-cell;
+    height: 80px;
+    width: 117px;
+    min-width: 110px;
+    border-collapse: collapse;
+    border: #333 solid 1px;
+    transition: background-color 0.5s;
+}
+.daycell:hover {
+    border: rgb(255, 1, 1) solid 1px;
+    background-color: rgba(255, 0, 0, 0.123);
+    transition: background-color 0.2s;
+}
+
+.numbercell {
+    font-size: 24px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.numbercell span {
+    opacity: 0.5;
+    font-size: 15px;
+    padding-right: 4px;
+    float: right;
+}
+
+.dayofweekscell {
+    display: table-cell;
+    border: #333 solid 1px;
+}
+
+.dayofweek {
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.sheduleitems {
+    height: 0px;
+}
+
+.sheduleitem {
+    background: rgba(74, 255, 59, 0.9);
+    margin: 5px;
+    cursor: pointer;
+}
+
+    .sheduleitem.pending {
+        background: rgba(245, 245, 0, 0.92);
+    }
+
+.interactive_form {
+    display: table-cell;
+    position: relative;
+    width: 200px;
+    background-color: antiquewhite;
+}
+
+#interactive_form_caption {
+    position: relative;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.choosen_date {
+    width: 100%;
+    text-align: center;
+}
+/*p{
+    margin: 0;
+}*/

@@ -1,15 +1,110 @@
-﻿
-@{
-    Layout = null;
-}
+﻿@using System.Text
+@using Microsoft.AspNetCore.Rewrite.Internal
+@using PhotoStudio.Modules.CalendarGenerator
+@model PhotoStudio.Models.Booking.BookingViewModels.BookingViewModel
 
+@{ 
+    //Layout = null;
+}.
+<!-- Model.BookingModels.Where(x => x.TimeOfVisit.Date.Year == Model.CalendarData[0].Year && x.TimeOfVisit.Date.Month == Model.CalendarData[0].); -->
 <!DOCTYPE html>
-
+<environment include="Development">
+    <!--<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />-->
+    <link rel="stylesheet" href="~/css/site.css" />
+</environment>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
     <title>GetBookedData</title>
 </head>
 <body>
+    <div class="calendar_block">
+        <div class="buttons">
+            <div class="button">
+                <button type="button" id="upbutton" onclick="calendar_up('@Url.Action("CalendarShift","Booking")')">
+                    <img src="~/images/up.svg" id="upimg">
+                </button>
+            </div>
+            <div class="button">
+                <button type="button" id="downbutton" onclick="calendar_down('@Url.Action("CalendarShift","Booking")')">
+                    <img src="~/images/down.svg" id="downimg">
+                </button>
+            </div>
+        </div>
+        <div class="calendar">
+            <div class="calendarrow dayofweekscells">
+                @foreach (var day in ViewData.Model.DaysOfWeek)
+                {
+                    <div class="dayofweekscell">
+                        <div class="dayofweek">
+                            @day
+                        </div>
+                    </div>
+                }
+            </div>
+            @for (int i = 0; i < ViewData.Model.CalendarData.Count; i += 7)
+            {
+                <div class="calendarrow dayscells">
+                    <div class="daycell">
+                        <div class="numbercell">
+                            @Model.CalendarData[i].Date<span>@Model.CalendarData[i].Month</span>
+                        </div>
+                        <div class=sheduleitems>
+                        </div>
+                    </div>
+                    <div class="daycell">
+                        <div class="numbercell">
+                            @Model.CalendarData[i + 1].Date<span>@Model.CalendarData[i + 1].Month</span>
+                        </div>
+                        <div class=sheduleitems>
+                        </div>
+                    </div>
+                    <div class="daycell">
+                        <div class="numbercell">
+                            @Model.CalendarData[i + 2].Date<span>@Model.CalendarData[i + 2].Month</span>
+                        </div>
+                        <div class=sheduleitems>
+
+                        </div>
+                    </div>
+                    <div class="daycell">
+                        <div class="numbercell">
+                            @Model.CalendarData[i + 3].Date<span>@Model.CalendarData[i + 3].Month</span>
+                        </div>
+                        <div class=sheduleitems>
+
+                        </div>
+                    </div>
+                    <div class="daycell">
+                        <div class="numbercell">
+                            @Model.CalendarData[i + 4].Date<span>@Model.CalendarData[i + 4].Month</span>
+                        </div>
+                        <div class=sheduleitems>
+
+                        </div>
+                    </div>
+                    <div class="daycell">
+                        <div class="numbercell">
+                            @Model.CalendarData[i + 5].Date<span>@Model.CalendarData[i + 5].Month</span>
+                        </div>
+                        <div class=sheduleitems>
+                        </div>
+                    </div>
+                    <div class="daycell">
+                        <div class="numbercell">
+                            @Model.CalendarData[i + 6].Date<span>@Model.CalendarData[i + 6].Month</span>
+                        </div>
+                        <div class=sheduleitems>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+<script>
+    var SelectedDayURL =('@Url.Action("GetAdditionalInfoByDay", "Booking")');
+</script>
 </body>
+
+
 </html>

@@ -3,10 +3,14 @@ C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\bin\Debug\netcoreapp2.0\Phot
 C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\bin\Debug\netcoreapp2.0\PhotoStudio.runtimeconfig.dev.json
 C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\bin\Debug\netcoreapp2.0\PhotoStudio.dll
 C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\bin\Debug\netcoreapp2.0\PhotoStudio.pdb
-C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\obj\Debug\netcoreapp2.0\PhotoStudio.csprojResolveAssemblyReference.cache
 C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\obj\Debug\netcoreapp2.0\PhotoStudio.csproj.CoreCompileInputs.cache
 C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\obj\Debug\netcoreapp2.0\PhotoStudio.AssemblyInfoInputs.cache
 C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\obj\Debug\netcoreapp2.0\PhotoStudio.AssemblyInfo.cs
 C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\obj\Debug\netcoreapp2.0\PhotoStudio.dll
 C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\obj\Debug\netcoreapp2.0\PhotoStudio.pdb
+C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\bin\Debug\netcoreapp2.0\Modules\client_secret.json
+C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\bin\Debug\netcoreapp2.0\Modules\googlecalendarsettings.json
+C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\bin\Debug\netcoreapp2.0\Modules\CalendarGenerator\CalendarGeneratorLocalisation.json
 C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\obj\Debug\netcoreapp2.0\PhotoStudio.csprojAssemblyReference.cache
+C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\bin\Debug\netcoreapp2.0\wwwroot\images\down.svg
+C:\Users\Ektos\source\repos\PhotoStudio\PhotoStudio\bin\Debug\netcoreapp2.0\wwwroot\images\up.svg
