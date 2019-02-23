@@ -7,6 +7,6 @@ namespace PhotoStudio.Modules
 {
     public interface ICalendarSynchronise
     {
-        void AddNewBookingsFromGoogleCaledar();
+        void SynchroniseCalendar(DateTime startDate);
     }
 }

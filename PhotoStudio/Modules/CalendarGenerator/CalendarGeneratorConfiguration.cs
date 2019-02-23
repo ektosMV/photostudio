@@ -10,5 +10,6 @@ namespace PhotoStudio.Modules.CalendarGenerator
         public string Language { get; set; }
         public int UtcDelta { get; set; }
         public int WeeksToDisplay { get; set; }
+        public int MaximumWeeksToBooking { get; set; }
     }
 }

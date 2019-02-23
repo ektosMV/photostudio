@@ -26,6 +26,18 @@ namespace xUnitTestApp.Tests
             _calendarHandler.AddEventRequest("Test", starttime, endTime, "Asia/Yekaterinburg");
             
         }
+
+        [Fact]
+        public void GetEventsRequewst()
+        {
+            var starttime = DateTime.Now.AddDays(1);
+            var endTime = DateTime.Now.AddDays(1).AddHours(1);
+            _calendarHandler.DeleteAllEvents();
+            _calendarHandler.AddEventRequest("Test", starttime, endTime, "Asia/Yekaterinburg");
+            var res = _calendarHandler.GetEventRequest(starttime.AddDays(-1), endTime.AddDays(1));
+            Assert.Equal(1, res.Count());
+        }
+
         [Fact]
         public void DeleteRequestTest()
         {
@@ -63,8 +75,15 @@ namespace xUnitTestApp.Tests
             mockContext.Setup(c => c.Bookings).Returns(mockSet.Object);
 
             var service = new CalendarSynchronise(mockContext.Object);
-            service.AddNewBookingsFromGoogleCaledar();
+            //service.AddNewBookingsFromGoogleCaledar();
+            
+
+            service.GetEventsByDays(DateTime.Now.Date, 4);
         }
+
+
+        
+
 
         public Mock<DbSet<BookingModel>> GetMockset(IQueryable<BookingModel> bookingdata)
         {
