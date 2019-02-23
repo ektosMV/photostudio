@@ -6,6 +6,7 @@ C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2
 C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2.0\xUnitTestApp.Tests.runtimeconfig.dev.json
 C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2.0\xUnitTestApp.Tests.dll
 C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2.0\xUnitTestApp.Tests.pdb
+C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\obj\Debug\netcoreapp2.0\xUnitTestApp.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\obj\Debug\netcoreapp2.0\xUnitTestApp.Tests.csproj.CoreCompileInputs.cache
 C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\obj\Debug\netcoreapp2.0\xUnitTestApp.Tests.AssemblyInfoInputs.cache
 C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\obj\Debug\netcoreapp2.0\xUnitTestApp.Tests.AssemblyInfo.cs
@@ -13,8 +14,3 @@ C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\obj\Debug\netcoreapp2
 C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\obj\Debug\netcoreapp2.0\xUnitTestApp.Tests.pdb
 C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2.0\PhotoStudio.dll
 C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2.0\PhotoStudio.pdb
-C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2.0\Modules\client_secret.json
-C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2.0\Modules\googlecalendarsettings.json
-C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\bin\Debug\netcoreapp2.0\Modules\CalendarGenerator\CalendarGeneratorLocalisation.json
-C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\obj\Debug\netcoreapp2.0\xUnitTestApp.Tests.csprojAssemblyReference.cache
-C:\Users\Ektos\source\repos\PhotoStudio\xUnitTestApp.Tests\obj\Debug\netcoreapp2.0\xUnitTestApp.Tests.csproj.CopyComplete

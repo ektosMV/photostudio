@@ -7,33 +7,19 @@ using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Services;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Options;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 
 namespace PhotoStudio.Modules
 {
     public class GoogleCalendarApi
     {
-        public static IConfigurationRoot Configuration;
         public CalendarService service { get; set; }
-        public string CalendarId { get; set; }
-        public string AppName { get; set; }
 
-        public GoogleCalendarApi()
+        public GoogleCalendarApi(string AppName, string FilePath)
         {
-            var builder = new ConfigurationBuilder()
-                .AddJsonFile(@"Modules\googlecalendarsettings.json")
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
-            AppName = Configuration.GetSection("GoogleCalendarSettings:AppName").Value;
-            CalendarId = Configuration.GetSection("GoogleCalendarSettings:CalendarId").Value;
-            service = GetCalendarService();
+            service = GetCalendarService(AppName, FilePath);
         }
-
-        public CalendarService GetCalendarService()
+        public CalendarService GetCalendarService(string AppName, string FilePath)
         {
-            var FilePath = Environment.CurrentDirectory + @"\Modules\client_secret.json";
             string ApplicationName = AppName;
             GoogleCredential credential;
             using (var stream =
@@ -41,6 +27,7 @@ namespace PhotoStudio.Modules
             {
                 credential = GoogleCredential.FromStream(stream).CreateScoped(CalendarService.Scope.Calendar);
             }
+
             // Create Google Calendar API service.
             var service = new CalendarService(new BaseClientService.Initializer()
             {
