@@ -14,7 +14,7 @@ namespace xUnitTestApp.Tests
             var c = new CalendarGenerator("ru",5);
             var result = c.GetCalendarGrid(4);
             Assert.Equal(result.Count, 7*4);
-            result = c.GetCalendarGrid(7, 1);
+            result = c.GetCalendarGrid(4, 1);
             Assert.Equal(result.Count, 7 * 4);
         }
         

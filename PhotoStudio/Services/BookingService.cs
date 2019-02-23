@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Remotion.Linq.Clauses;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace PhotoStudio.Models.Booking
@@ -19,12 +18,14 @@ namespace PhotoStudio.Models.Booking
 
         public List<BookingModel> GetAllBookings()
         {
-            return (from book in _bookingContext.Bookings select book).ToList();
+            return _bookingContext.Bookings.ToList();
+           //return (from book in _bookingContext.Bookings select book).ToList();
         }
 
         public List<BookingModel> GetBookingsFromStartTime(DateTime startTime)
         {
-            return (from book in _bookingContext.Bookings where book.TimeOfVisit >= startTime select book).ToList();
+            return _bookingContext.Bookings.Where(x => x.TimeOfVisit >= startTime).ToList();
+            //return (from book in _bookingContext.Bookings where book.TimeOfVisit >= startTime select book).ToList();
         }
 
         public List<BookingModel> GetBookingsBetweenTimes(DateTime startTime, DateTime endTimeOfVisitTime)

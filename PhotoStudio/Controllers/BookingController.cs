@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using PhotoStudio.Models;
 using PhotoStudio.Models.Booking;
+using PhotoStudio.Models.Booking.BookingViewModels;
 using PhotoStudio.Modules;
 using PhotoStudio.Modules.CalendarGenerator;
 using IConfiguration = Castle.Core.Configuration.IConfiguration;
@@ -19,52 +21,42 @@ namespace PhotoStudio.Controllers
 {
     public class BookingController : Controller
     {
-        private BookingContext db;
-        private CalendarSynchronise CalendarSynchronise { get; set; }
-        private CalendarGenerator CalendarGenerator { get; set; }
-        private IBookingService BookingService { get; set; }
-        private int WeeksToDisplay { get; }
-        public int WeekDelta { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="bookingService"></param>
-        public BookingController(BookingContext context, IBookingService bookingService, IOptions<GoogleConfiguration> googleConfiguration, IOptions<CalendarGeneratorConfiguration> calendarGenConfig)
+        public IActionResult GetBookedData([FromServices]IOptions<CalendarGeneratorConfiguration> calendarGenConfig)
         {
-            db = context;
-            BookingService = bookingService;
-            CalendarSynchronise = new CalendarSynchronise(db);
-            var r = googleConfiguration.Value.CalendarId;
-            var c = googleConfiguration.Value.AppName;
-            CalendarGenerator = new CalendarGenerator(calendarGenConfig.Value.Language, calendarGenConfig.Value.UtcDelta);
-            WeeksToDisplay = calendarGenConfig.Value.WeeksToDisplay;
-            WeekDelta = 0;
-        }
-   
-
-        public IActionResult GetBookedData()
-        {
-            var r = CalendarSynchronise.GetEventsFromLocalBase();
-            var calendarGrid = CalendarGenerator.GetCalendarGrid(4);
-            return View(calendarGrid);
+            var calendarGenerator = new CalendarGenerator(calendarGenConfig.Value.Language, calendarGenConfig.Value.UtcDelta);
+            var bvm = new BookingViewModel
+            {
+                DaysOfWeek = calendarGenerator.GetDays(),
+                CalendarData = calendarGenerator.GetCalendarGrid(4)
+            };
+            return View(bvm);
         }
 
-        public IActionResult GetBookingInfoForCustomers()
+        public IActionResult CalendarShift([FromServices]IOptions<CalendarGeneratorConfiguration> calendarGenConfig)
         {
-         /*   var dateTimes = db.Bookings.Select(x => x.TimeOfVisit)
-                .Where(x => x.Date > DateTime.Now && x.Date < DateTime.Now.AddMonths(1));*/
-            CalendarSynchronise.GetEventsFromLocalBase();
-          //  return service.GetService<CalendarSynchronise>().GetEventsFromLocalBase();
-            ViewData["3"] = "rt";
-            return View();
+            var r = new StreamReader(HttpContext.Request.Body).ReadToEnd();
+            var calendarGenerator = new CalendarGenerator(calendarGenConfig.Value.Language, calendarGenConfig.Value.UtcDelta);
+            var bvm = new BookingViewModel
+            {
+                DaysOfWeek = calendarGenerator.GetDays(),
+                CalendarData = calendarGenerator.GetCalendarGrid(4, Convert.ToInt16(r))
+            };
+            var rw = Json(bvm);
+            var rrr = new JsonResult(bvm);
+            return Json(rrr);
         }
 
-        public IActionResult GetCalendar()
+
+        public void GetAdditionalInfoByDay([FromServices]IOptions<CalendarGeneratorConfiguration> calendarGenConfig)
         {
-            var calendar = new CalendarGenerator("ru",5);
-            return View();
+            var calendarGenerator = new CalendarGenerator(calendarGenConfig.Value.Language, calendarGenConfig.Value.UtcDelta);
+            
+            var dayPosition = Convert.ToInt16(new StreamReader(HttpContext.Request.Body).ReadToEnd());
+            if (dayPosition < 0 || dayPosition > 365)
+                return;
+            var date = DateTime.UtcNow.AddHours(CalendarGenerator.UtcDelta).Date.AddDays(-DateTime.UtcNow.AddHours(CalendarGenerator.UtcDelta).DayOfWeek.DaysOfWeekFromMonday()).AddDays(dayPosition);
         }
+
     }
 }

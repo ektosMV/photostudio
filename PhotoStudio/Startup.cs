@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,13 +29,14 @@ namespace PhotoStudio
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<BookingContext>(options => options.UseSqlServer(connection));
-            services.AddTransient<IBookingService, BookingService>();
-            services.AddTransient<CalendarSynchronise>();
-            services.AddTransient<CalendarGenerator>();
+            /*services.AddTransient<IBookingService, BookingService>();
+            services.AddTransient<CalendarSynchronise>();*/
+            /*services.AddTransient<CalendarGenerator>();*/
             
             // Add functionality to inject IOptions<T>
             services.AddOptions();
             // Add our Config object so it can be injected
+            var r = Configuration.GetSection("LocalisationSettings");
             services.Configure<CalendarGeneratorConfiguration>(Configuration.GetSection("LocalisationSettings"));
             services.Configure<GoogleConfiguration>(Configuration.GetSection("googlecalendarsettings"));
             
