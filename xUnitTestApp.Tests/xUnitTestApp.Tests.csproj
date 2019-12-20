@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BookingDB\BookingDB.csproj" />
     <ProjectReference Include="..\PhotoStudio\PhotoStudio.csproj" />
   </ItemGroup>
 

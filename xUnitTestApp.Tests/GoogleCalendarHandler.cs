@@ -11,7 +11,7 @@ namespace xUnitTestApp.Tests
         private CalendarHandler _calendarHandler;
         public GoogleCalendarHandlerTest()
         {
-            _calendarHandler = new CalendarHandler("TestApp", @"..\..\..\..\PhotoStudio\Modules\client_secret.json", "ohom3k7j2c9q0pl3jm0hcslu08@group.calendar.google.com");
+            //_calendarHandler = new CalendarHandler("TestApp", @"..\..\..\..\PhotoStudio\Modules\client_secret.json", "ohom3k7j2c9q0pl3jm0hcslu08@group.calendar.google.com");
         }
         [Fact]
         public void AddEventRequestTest()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookingDB;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -28,7 +29,8 @@ namespace PhotoStudio
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<BookingContext>(options => options.UseSqlServer(connection));
+            //services.AddDbContext<BookingContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<BookingDbContext>(optionsAction => optionsAction.UseMySQL(""));
             /*services.AddTransient<IBookingService, BookingService>();
             services.AddTransient<CalendarSynchronise>();*/
             /*services.AddTransient<CalendarGenerator>();*/
@@ -55,7 +57,6 @@ namespace PhotoStudio
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
             app.UseStaticFiles();
             
             app.UseMvc(routes =>
