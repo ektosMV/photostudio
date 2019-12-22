@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
-namespace BookingDB.DataTypes
+namespace BookingDB.Models
 {
     public class Booking
     {
@@ -15,7 +13,5 @@ namespace BookingDB.DataTypes
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
         public string Comment { get; set; }
-
-
     }
 }

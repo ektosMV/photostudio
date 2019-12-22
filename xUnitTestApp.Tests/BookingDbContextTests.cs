@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using BookingDB;
-using BookingDB.DataTypes;
+using BookingDB.Models;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 

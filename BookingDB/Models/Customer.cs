@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BookingDB.DataTypes
+﻿
+namespace BookingDB.Models
 {
     public class Customer
     {
