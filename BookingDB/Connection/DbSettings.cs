@@ -7,7 +7,7 @@ namespace BookingDB.Connection
 {
     public enum DbTypes
     {
-        MySQL
+        MySQL, SqlLite
     }
     [DataContract]
     public class DbSettings

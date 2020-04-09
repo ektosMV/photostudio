@@ -1,7 +1,5 @@
 using System;
-using System.Linq;
 using Xunit;
-using PhotoStudio;
 using PhotoStudio.Modules;
 
 namespace xUnitTestApp.Tests

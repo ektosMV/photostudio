@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Runtime.Serialization.Json;
-using System.Text;
 using Xunit;
 using BookingDB;
 using BookingDB.Connection;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Linq;
 using MySql.Data.MySqlClient;
 
 namespace xUnitTestApp.Tests

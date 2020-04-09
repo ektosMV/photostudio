@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using PhotoStudio.Modules.CalendarGenerator;
+﻿using PhotoStudio.Modules.CalendarGenerator;
 using Xunit;
 
 namespace xUnitTestApp.Tests

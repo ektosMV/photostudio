@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BookingDB.Migrations
 {
     [DbContext(typeof(BookingDbContext))]
-    [Migration("20191215180826_AddTables")]
-    partial class AddTables
+    [Migration("20200113201249_BaseEdit")]
+    partial class BaseEdit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,7 +17,7 @@ namespace BookingDB.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
 
-            modelBuilder.Entity("BookingDB.DataTypes.BookedEntity", b =>
+            modelBuilder.Entity("BookingDB.Models.BookedEntity", b =>
                 {
                     b.Property<int>("BookingEntityId")
                         .ValueGeneratedOnAdd();
@@ -31,18 +31,20 @@ namespace BookingDB.Migrations
                     b.ToTable("BookedEntity");
                 });
 
-            modelBuilder.Entity("BookingDB.DataTypes.Booking", b =>
+            modelBuilder.Entity("BookingDB.Models.Booking", b =>
                 {
                     b.Property<int>("BookingId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int?>("BookedEntityBookingEntityId");
 
-                    b.Property<string>("Comment");
+                    b.Property<string>("Comment")
+                        .HasMaxLength(5000);
 
                     b.Property<int?>("CustomerId");
 
-                    b.Property<DateTime>("DateFrom");
+                    b.Property<DateTime>("DateFrom")
+                        .ValueGeneratedOnAddOrUpdate();
 
                     b.Property<DateTime>("DateTo");
 
@@ -55,14 +57,15 @@ namespace BookingDB.Migrations
                     b.ToTable("Booking");
                 });
 
-            modelBuilder.Entity("BookingDB.DataTypes.Customer", b =>
+            modelBuilder.Entity("BookingDB.Models.Customer", b =>
                 {
                     b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Email");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Phone");
 
@@ -71,14 +74,14 @@ namespace BookingDB.Migrations
                     b.ToTable("Customer");
                 });
 
-            modelBuilder.Entity("BookingDB.DataTypes.Booking", b =>
+            modelBuilder.Entity("BookingDB.Models.Booking", b =>
                 {
-                    b.HasOne("BookingDB.DataTypes.BookedEntity", "BookedEntity")
-                        .WithMany()
+                    b.HasOne("BookingDB.Models.BookedEntity", "BookedEntity")
+                        .WithMany("Bookings")
                         .HasForeignKey("BookedEntityBookingEntityId");
 
-                    b.HasOne("BookingDB.DataTypes.Customer", "Customer")
-                        .WithMany()
+                    b.HasOne("BookingDB.Models.Customer", "Customer")
+                        .WithMany("Bookings")
                         .HasForeignKey("CustomerId");
                 });
 #pragma warning restore 612, 618

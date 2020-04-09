@@ -1,15 +1,17 @@
-﻿using System;
+﻿using BookingDB.Connection;
+using BookingDB.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using Microsoft.EntityFrameworkCore;
 using System.Runtime.Serialization.Json;
-using BookingDB.Connection;
-using BookingDB.Models;
-using Microsoft.Extensions.Logging;
-using NLog.Extensions;
-using NLog.Extensions.Logging;
+using System.Threading;
+using NLog.Fluent;
 
 namespace BookingDB
 {
@@ -37,8 +39,7 @@ namespace BookingDB
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //тут всякая магия по настройке свойств моделей (fluent API)a
-            
-
+            modelBuilder.Entity<Booking>().HasIndex(x => new {x.BookingId, x.DateFrom, x.DateTo});
         }
 
 
@@ -51,10 +52,13 @@ namespace BookingDB
                     case DbTypes.MySQL:
                         dbContextOptionsBuilder.UseMySQL(ExtractConnectionString());
                         break;
+                   case DbTypes.SqlLite:
+                       dbContextOptionsBuilder.UseSqlite(ExtractConnectionString());
+                        break;
                     default:
                         throw new SettingsPropertyNotFoundException("");
                 }
-                dbContextOptionsBuilder.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddNLog()));
+                //dbContextOptionsBuilder.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddNLog()));
             }
         }
 
@@ -67,6 +71,45 @@ namespace BookingDB
             return cs;
         }
 
+        public override int SaveChanges()
+        {
+            try
+            {
+                ValidateBooking();
+                return base.SaveChanges();
+            }
+            catch (ValidationException ex)
+            {
+                return 0;
+            }
+            catch (DbUpdateException)
+            {
+                return 0;
+            }
+        }
+
+        private ValidationResult ValidateBooking()
+        {
+            var changedEntities = ChangeTracker.Entries<Booking>()
+                .Where(_ => _.State == EntityState.Added ||
+                            _.State == EntityState.Modified);
+            //var errors = new List<ValidationResult>(); // all errors are here
+            foreach (var e in changedEntities)
+            {
+                if  (e.Entity.BookedEntity.SimultaniousBookings)
+                    continue;
+                if (Booking.Any(x => 
+                e.Entity.DateFrom < x.DateTo && e.Entity.DateTo > x.DateFrom ))
+                    return new ValidationResult("Booking time overlap have been detected, " +
+                                                  "ensure that entered time is not intersected with existing", new List<string>());
+               /* errors.Add(new ValidationResult("Booking time overlap have been detected, " +
+                                                    "ensure that entered time is not intersected with existing"));
+                /*var vc = new ValidationContext(e.Entity).;
+                var b = Validator.TryValidateObject(
+                    e.Entity, vc, errors, validateAllProperties: true);*/
+            }
+            return null;
+        }
 
     }
 }

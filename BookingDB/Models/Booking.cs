@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace BookingDB.Models
 {
@@ -7,11 +9,12 @@ namespace BookingDB.Models
     {
         [Key]
         public int BookingId { get; set; }
-        
-        public BookedEntity BookedEntity { get; set; }
-        public Customer Customer { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
+        [MaxLength(5000)]
         public string Comment { get; set; }
+        [Required]
+        public BookedEntity BookedEntity { get; set; }
+        public Customer Customer { get; set; }
     }
 }
