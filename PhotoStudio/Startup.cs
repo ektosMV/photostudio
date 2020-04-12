@@ -18,19 +18,20 @@ namespace PhotoStudio
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             //services.AddDbContext<BookingContext>(options => options.UseSqlServer(connection));
-            services.AddDbContext<BookingDbContext>(optionsAction => optionsAction.UseMySQL(""));
+            services.AddDbContext<BookingDbContext>();// optionsAction => optionsAction.UseSqlite(""));
             /*services.AddTransient<IBookingService, BookingService>();
             services.AddTransient<CalendarSynchronise>();*/
             /*services.AddTransient<CalendarGenerator>();*/
@@ -39,7 +40,7 @@ namespace PhotoStudio
             services.AddOptions();
             // Add our Config object so it can be injected
             var r = Configuration.GetSection("LocalisationSettings");
-            services.Configure<CalendarGeneratorConfiguration>(Configuration.GetSection("LocalisationSettings"));
+            //services.Configure<CalendarGeneratorConfiguration>(Configuration.GetSection("LocalisationSettings"));
             services.Configure<GoogleConfiguration>(Configuration.GetSection("googlecalendarsettings"));
             
             services.AddMvc();

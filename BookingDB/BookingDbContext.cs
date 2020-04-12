@@ -47,7 +47,7 @@ namespace BookingDB
         {
             if (!dbContextOptionsBuilder.IsConfigured)
             {
-                switch (Enum.Parse(typeof(DbTypes), dbSettings.PreferedProvider))
+                switch (Enum.Parse(typeof(DbTypes), dbSettings.PreferedProvider, true))
                 {
                     case DbTypes.MySQL:
                         dbContextOptionsBuilder.UseMySQL(ExtractConnectionString());
@@ -102,11 +102,13 @@ namespace BookingDB
                 e.Entity.DateFrom < x.DateTo && e.Entity.DateTo > x.DateFrom ))
                     return new ValidationResult("Booking time overlap have been detected, " +
                                                   "ensure that entered time is not intersected with existing", new List<string>());
-               /* errors.Add(new ValidationResult("Booking time overlap have been detected, " +
-                                                    "ensure that entered time is not intersected with existing"));
-                /*var vc = new ValidationContext(e.Entity).;
-                var b = Validator.TryValidateObject(
-                    e.Entity, vc, errors, validateAllProperties: true);*/
+                /* errors.Add(new ValidationResult("Booking time overlap have been detected, " +
+                                                     "ensure that entered time is not intersected with existing"));*/
+                e.State = EntityState.Detached;
+                
+                var vc = new ValidationContext(e.Entity);
+                //var b = Validator.TryValidateObject(
+                //    e.Entity, vc, errors, validateAllProperties: true);*/
             }
             return null;
         }

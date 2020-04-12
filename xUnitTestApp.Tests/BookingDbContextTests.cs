@@ -29,6 +29,7 @@ namespace xUnitTestApp.Tests
             AddInitialDataToDb();
         }
 
+
         private void AddInitialDataToDb()
         {
             using (var context = new BookingDbContext(DbContextOptions))
@@ -70,6 +71,8 @@ namespace xUnitTestApp.Tests
             }
             
         }
+
+        
         public void Dispose()
         {
             _inMemorySqlite.Close();
@@ -116,6 +119,55 @@ namespace xUnitTestApp.Tests
                 });
                 context.SaveChanges();
             }
+        }
+
+        [Fact]
+        public void CreateBokingDbContextFromConfig()
+        {
+            using (var context = new BookingDbContext())
+            {
+                context.Database.EnsureCreated();
+                AddInitialDataToDb(context);
+            }
+        }
+
+        void AddInitialDataToDb(BookingDbContext context)
+        {
+            context.BookedEntity.Add(new BookedEntity()
+            {
+                EntityName = "TestEntity1",
+                TimeShift = 300
+            });
+            context.Customer.Add(new Customer()
+            {
+                Name = "TestCustomer"
+            });
+            context.SaveChanges();
+            context.Booking.AddRange(new Booking()
+            {
+                DateFrom = DateTime.Now.AddHours(-2),
+                DateTo = DateTime.Now.AddHours(-1),
+                Comment = "TestBookingComment 1",
+                Customer = context.Customer.First(),
+                BookedEntity = context.BookedEntity.First()
+            }, new Booking()
+            {
+                DateFrom = DateTime.Now.AddHours(-3),
+                DateTo = DateTime.Now.AddHours(-2),
+                Comment = "TestBookingComment 2",
+                Customer = context.Customer.First(),
+                BookedEntity = context.BookedEntity.First()
+            },
+                new Booking()
+                {
+                    DateFrom = DateTime.Now.AddHours(-5),
+                    DateTo = DateTime.Now.AddHours(-4),
+                    Comment = "TestBookingComment 3",
+                    Customer = context.Customer.First(),
+                    BookedEntity = context.BookedEntity.First()
+                });
+            context.SaveChanges();
+
         }
 
     }

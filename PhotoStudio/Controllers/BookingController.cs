@@ -1,21 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.Options;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using PhotoStudio.Models;
-using PhotoStudio.Models.Booking;
 using PhotoStudio.Models.Booking.BookingViewModels;
-using PhotoStudio.Modules;
 using PhotoStudio.Modules.CalendarGenerator;
-using IConfiguration = Castle.Core.Configuration.IConfiguration;
+using System;
+using System.IO;
 
 namespace PhotoStudio.Controllers
 {
